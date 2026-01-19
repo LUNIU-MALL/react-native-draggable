@@ -64,37 +64,35 @@ interface IProps {
   dragItemStyle?: StyleProp<ViewStyle>;
 }
 
-export default function Draggable(props: IProps) {
-  const {
-    renderText,
-    isCircle,
-    renderSize,
-    imageSource,
-    renderColor,
-    children,
-    shouldReverse,
-    disabled,
-    debug,
-    animatedViewProps,
-    touchableOpacityProps,
-    onDrag,
-    onShortPressRelease,
-    onDragRelease,
-    onLongPress,
-    onPressIn,
-    onPressOut,
-    onRelease,
-    x,
-    y,
-    z,
-    minX,
-    minY,
-    maxX,
-    maxY,
-    textStyle,
-    dragItemStyle,
-  } = props;
-
+export default function Draggable({
+  renderText = '+',
+  isCircle,
+  renderSize = 36,
+  imageSource,
+  renderColor,
+  children,
+  shouldReverse = false,
+  disabled = false,
+  debug = false,
+  animatedViewProps,
+  touchableOpacityProps,
+  onDrag = () => {},
+  onShortPressRelease = () => {},
+  onDragRelease = () => {},
+  onLongPress = () => {},
+  onPressIn = () => {},
+  onPressOut = () => {},
+  onRelease = () => {},
+  x = 0,
+  y = 0,
+  z = 1,
+  minX,
+  minY,
+  maxX,
+  maxY,
+  textStyle,
+  dragItemStyle,
+}: IProps) {
   // The Animated object housing our xy value so that we can spring back
   const pan = React.useRef(new Animated.ValueXY());
   // Always set to xy value of pan, would like to remove
@@ -329,26 +327,6 @@ export default function Draggable(props: IProps) {
     </View>
   );
 }
-
-/***** Default props and types */
-
-Draggable.defaultProps = {
-  renderText: '＋',
-  renderSize: 36,
-  shouldReverse: false,
-  disabled: false,
-  debug: false,
-  onDrag: () => {},
-  onShortPressRelease: () => {},
-  onDragRelease: () => {},
-  onLongPress: () => {},
-  onPressIn: () => {},
-  onPressOut: () => {},
-  onRelease: () => {},
-  x: 0,
-  y: 0,
-  z: 1,
-};
 
 const styles = StyleSheet.create({
   text: {color: '#fff', textAlign: 'center'},
